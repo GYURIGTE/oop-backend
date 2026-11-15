@@ -87,18 +87,16 @@ CORS allows `FRONTEND_URL`, `http://localhost:5173`, and
 
 ## Demo data
 
-`php artisan migrate --seed` creates 5 users, 13 listings, 13 listing images,
-3 conversations, and 10 messages. Every seeded user's password is `password`.
+`php artisan migrate --seed` creates 1 user, 13 listings, and 13 listing images.
+The account owns every listing and uses the password `password`.
 
-| Email                  | Username             |
-| ---------------------- | -------------------- |
-| `celestine@gmail.com`  | `celestinedegamo`    |
-| `joniver@gmail.com`    | `joniverpogoy`       |
-| `christian@gmail.com`  | `christiansumalinog` |
-| `charles@gmail.com`    | `charlesdinoy`       |
-| `joniverd@gmail.com`   | `joniverdinoy`       |
+| Email | Username |
+| ------------------------------- | ---------------- |
+| `chrislawrencedegamo182@gmail.com` | `chrislawrence` |
 
 Login accepts an email **or** a username.
+
+Register a second account to demo chatting and meet-ups.
 
 ---
 
@@ -199,7 +197,7 @@ routes/api.php         All API routes
 curl -X POST http://127.0.0.1:8000/api/auth/login \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
-  -d "{\"email\":\"celestine@gmail.com\",\"password\":\"password\"}"
+  -d "{\"email\":\"chrislawrencedegamo182@gmail.com\",\"password\":\"password\"}"
 ```
 
 Use the returned `token` as `Authorization: Bearer <token>` for protected
