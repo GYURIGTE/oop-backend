@@ -101,6 +101,40 @@ domain or allow the pattern in `config/cors.php`.
 
 ---
 
+## 4. Password reset emails
+
+The "Forgot password?" flow sends a reset link to the account's email address.
+The link points at `FRONTEND_URL/auth/reset-password`, so `FRONTEND_URL` must be
+the Vercel domain.
+
+Pick a mail provider and add its SMTP settings to Render:
+
+| Provider | Free tier | SMTP host | Port |
+| --- | --- | --- | --- |
+| **Brevo** (recommended) | 300 emails/day | `smtp-relay.brevo.com` | `587` |
+| Gmail | ~500/day, needs 2FA + App Password | `smtp.gmail.com` | `587` |
+| Resend | 3,000/month, needs a verified domain | `smtp.resend.com` | `587` |
+
+Environment variables:
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp-relay.brevo.com
+MAIL_PORT=587
+MAIL_USERNAME=<provider login>
+MAIL_PASSWORD=<provider SMTP key>
+MAIL_FROM_ADDRESS=<verified sender address>
+MAIL_FROM_NAME=BALIGYA
+```
+
+With Brevo: sign up → **SMTP & API** → **SMTP** tab → copy the login and the
+SMTP key → verify your sender email under **Senders**.
+
+Locally you can leave `MAIL_MAILER=log` — reset links are written to
+`storage/logs/laravel.log` instead of being sent.
+
+---
+
 ## Notes
 
 - **Free Render services sleep** after inactivity. The first request after a
